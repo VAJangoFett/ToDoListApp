@@ -1,0 +1,35 @@
+<h1 class="text-center mb-4">Welcome to my todolist app</h1>
+<%= render 'layouts/task_form'  %>
+<div class="container-categories">
+  <ul>
+  <% @categories.each do  |category|%>
+  <li><%= submit_tag(category.title, class: "btn btn-start-order") %></li>
+  <div class="card">
+    <ul>
+      <% category.tasks.each do |task|  %>
+      <li>
+        <%= task.title  %>
+        <% unless task.deadline.nil? %>
+          , to read: <%= task.deadline.strftime('%D')  %>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  </ul>
+</div>
+
+<div class="carousel">
+  <div class="row">
+    <div id="carrousel">
+      <% @tasks.each do |task|  %>
+        <div class="card">
+          <% unless task.image.nil? %>
+            <%= image_tag task.image, class: "go" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
